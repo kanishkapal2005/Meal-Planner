@@ -1,0 +1,390 @@
+/**
+ * data/recipes-data.js - Embedded Starter Recipes Dataset
+ * Ensures complete offline and file:// protocol reliability without CORS restrictions.
+ */
+
+window.DEFAULT_RECIPES = [
+  {
+    "id": "recipe-1",
+    "name": "Tuscan Garlic Herb Chicken",
+    "servings": 4,
+    "prepTime": 15,
+    "cookTime": 25,
+    "tags": ["High-Protein", "Dinner", "Gluten-Free"],
+    "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🍗",
+    "description": "Pan-seared tender chicken breasts bathed in a rich garlic herb cream sauce with sun-dried tomatoes and fresh baby spinach.",
+    "ingredients": [
+      { "name": "chicken breast", "quantity": 600, "unit": "g", "aisle": "Meat & Seafood", "raw": "600g boneless chicken breast" },
+      { "name": "garlic", "quantity": 4, "unit": "cloves", "aisle": "Produce", "raw": "4 cloves garlic, minced" },
+      { "name": "heavy cream", "quantity": 240, "unit": "ml", "aisle": "Dairy & Eggs", "raw": "1 cup heavy cream (240ml)" },
+      { "name": "baby spinach", "quantity": 150, "unit": "g", "aisle": "Produce", "raw": "150g fresh baby spinach" },
+      { "name": "olive oil", "quantity": 30, "unit": "ml", "aisle": "Pantry & Grains", "raw": "2 tbsp olive oil" },
+      { "name": "sun-dried tomatoes", "quantity": 100, "unit": "g", "aisle": "Canned & Jarred", "raw": "100g sliced sun-dried tomatoes" },
+      { "name": "parmesan cheese", "quantity": 50, "unit": "g", "aisle": "Dairy & Eggs", "raw": "50g grated parmesan cheese" },
+      { "name": "black pepper", "quantity": 1, "unit": "tsp", "aisle": "Condiments & Spices", "raw": "1 tsp black pepper" }
+    ],
+    "instructions": [
+      "Season chicken breasts with salt and black pepper.",
+      "Heat olive oil in a large skillet over medium-high heat. Sear chicken 5-7 minutes per side until golden and cooked through. Transfer to a plate.",
+      "In the same skillet, sauté minced garlic and sun-dried tomatoes for 1 minute until fragrant.",
+      "Pour in heavy cream and bring to a gentle simmer. Stir in grated parmesan until melted and smooth.",
+      "Add baby spinach and toss until wilted (about 2 minutes). Return chicken to the pan to coat in sauce and serve hot."
+    ],
+    "nutritionPerServing": {
+      "calories": 480,
+      "protein": 42,
+      "carbs": 8,
+      "fat": 32
+    }
+  },
+  {
+    "id": "recipe-2",
+    "name": "Creamy Mushroom & Spinach Penne",
+    "servings": 3,
+    "prepTime": 10,
+    "cookTime": 15,
+    "tags": ["Vegetarian", "Dinner", "Quick"],
+    "image": "https://images.unsplash.com/photo-1621996346565-e3d5d6281165?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🍝",
+    "description": "Al dente penne pasta tossed with buttery sautéed cremini mushrooms, wilted spinach, and a silken parmesan sauce.",
+    "ingredients": [
+      { "name": "penne pasta", "quantity": 300, "unit": "g", "aisle": "Pantry & Grains", "raw": "300g penne pasta" },
+      { "name": "mushrooms", "quantity": 250, "unit": "g", "aisle": "Produce", "raw": "250g sliced mushrooms" },
+      { "name": "baby spinach", "quantity": 100, "unit": "g", "aisle": "Produce", "raw": "100g fresh baby spinach" },
+      { "name": "garlic", "quantity": 3, "unit": "cloves", "aisle": "Produce", "raw": "3 cloves garlic, minced" },
+      { "name": "butter", "quantity": 30, "unit": "g", "aisle": "Dairy & Eggs", "raw": "2 tbsp butter" },
+      { "name": "heavy cream", "quantity": 180, "unit": "ml", "aisle": "Dairy & Eggs", "raw": "3/4 cup heavy cream" },
+      { "name": "parmesan cheese", "quantity": 40, "unit": "g", "aisle": "Dairy & Eggs", "raw": "40g freshly grated parmesan" }
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to boil. Cook penne pasta according to package directions until al dente.",
+      "Melt butter in a wide pan over medium heat. Add mushrooms and sauté until browned and tender, about 6 minutes.",
+      "Add minced garlic and cook for 1 minute until aromatic.",
+      "Pour in cream and bring to a simmer. Add spinach and stir until wilted.",
+      "Drain pasta, reserving 1/4 cup pasta water. Fold pasta and parmesan cheese into the sauce, tossing until luscious."
+    ],
+    "nutritionPerServing": {
+      "calories": 520,
+      "protein": 16,
+      "carbs": 68,
+      "fat": 21
+    }
+  },
+  {
+    "id": "recipe-3",
+    "name": "Fresh Berry Overnight Oats",
+    "servings": 2,
+    "prepTime": 5,
+    "cookTime": 0,
+    "tags": ["Quick", "Breakfast", "Vegetarian", "High-Fiber"],
+    "image": "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🥣",
+    "description": "Make-ahead rolled oats soaked in creamy milk with chia seeds, golden honey, and juicy fresh berries.",
+    "ingredients": [
+      { "name": "rolled oats", "quantity": 120, "unit": "g", "aisle": "Pantry & Grains", "raw": "120g rolled oats (approx 1.2 cups)" },
+      { "name": "milk", "quantity": 300, "unit": "ml", "aisle": "Dairy & Eggs", "raw": "300ml milk" },
+      { "name": "chia seeds", "quantity": 20, "unit": "g", "aisle": "Pantry & Grains", "raw": "2 tbsp chia seeds" },
+      { "name": "honey", "quantity": 30, "unit": "ml", "aisle": "Pantry & Grains", "raw": "2 tbsp honey or maple syrup" },
+      { "name": "strawberries", "quantity": 100, "unit": "g", "aisle": "Produce", "raw": "100g sliced strawberries" },
+      { "name": "blueberries", "quantity": 80, "unit": "g", "aisle": "Produce", "raw": "80g fresh blueberries" }
+    ],
+    "instructions": [
+      "In two jars or bowls, divide rolled oats, chia seeds, and milk evenly.",
+      "Drizzle with honey and stir thoroughly to combine.",
+      "Seal or cover and refrigerate overnight (or at least 4 hours) until thick and creamy.",
+      "Top with fresh strawberries and blueberries before enjoying cool."
+    ],
+    "nutritionPerServing": {
+      "calories": 340,
+      "protein": 11,
+      "carbs": 58,
+      "fat": 8
+    }
+  },
+  {
+    "id": "recipe-4",
+    "name": "Mediterranean Chickpea & Feta Salad",
+    "servings": 3,
+    "prepTime": 15,
+    "cookTime": 0,
+    "tags": ["Vegetarian", "Lunch", "Quick", "Gluten-Free"],
+    "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🥗",
+    "description": "A crisp, refreshing chopped salad with chickpeas, cucumbers, juicy cherry tomatoes, kalamata olives, and crumbled tangy feta.",
+    "ingredients": [
+      { "name": "chickpeas", "quantity": 1, "unit": "can", "aisle": "Canned & Jarred", "raw": "1 can chickpeas, rinsed and drained" },
+      { "name": "cucumber", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1 cucumber, diced" },
+      { "name": "cherry tomatoes", "quantity": 200, "unit": "g", "aisle": "Produce", "raw": "200g cherry tomatoes, halved" },
+      { "name": "feta cheese", "quantity": 100, "unit": "g", "aisle": "Dairy & Eggs", "raw": "100g crumbled feta cheese" },
+      { "name": "red onion", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1/2 red onion, finely diced" },
+      { "name": "olive oil", "quantity": 30, "unit": "ml", "aisle": "Pantry & Grains", "raw": "2 tbsp extra virgin olive oil" },
+      { "name": "lemon", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1 fresh lemon, juiced" }
+    ],
+    "instructions": [
+      "In a large salad bowl, combine rinsed chickpeas, diced cucumber, halved cherry tomatoes, and red onion.",
+      "Whisk together olive oil, lemon juice, salt, and black pepper.",
+      "Pour vinaigrette over salad and toss gently.",
+      "Gently fold in crumbled feta cheese and serve chilled."
+    ],
+    "nutritionPerServing": {
+      "calories": 310,
+      "protein": 12,
+      "carbs": 32,
+      "fat": 15
+    }
+  },
+  {
+    "id": "recipe-5",
+    "name": "Golden Turmeric Red Lentil Dahl",
+    "servings": 4,
+    "prepTime": 10,
+    "cookTime": 25,
+    "tags": ["Vegan", "Dinner", "High-Protein", "Budget"],
+    "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🍲",
+    "description": "Comforting, aromatic red lentils simmered in coconut milk, turmeric, ginger, and cumin, served over fragrant basmati rice.",
+    "ingredients": [
+      { "name": "red lentils", "quantity": 250, "unit": "g", "aisle": "Pantry & Grains", "raw": "250g red split lentils, rinsed" },
+      { "name": "coconut milk", "quantity": 400, "unit": "ml", "aisle": "Canned & Jarred", "raw": "1 can (400ml) coconut milk" },
+      { "name": "vegetable broth", "quantity": 500, "unit": "ml", "aisle": "Pantry & Grains", "raw": "500ml vegetable broth" },
+      { "name": "yellow onion", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1 yellow onion, finely diced" },
+      { "name": "garlic", "quantity": 3, "unit": "cloves", "aisle": "Produce", "raw": "3 cloves garlic, minced" },
+      { "name": "ground turmeric", "quantity": 1, "unit": "tsp", "aisle": "Condiments & Spices", "raw": "1 tsp turmeric powder" },
+      { "name": "ground cumin", "quantity": 1, "unit": "tsp", "aisle": "Condiments & Spices", "raw": "1 tsp ground cumin" },
+      { "name": "baby spinach", "quantity": 80, "unit": "g", "aisle": "Produce", "raw": "80g baby spinach leaves" }
+    ],
+    "instructions": [
+      "In a large saucepan, heat 1 tbsp oil over medium heat. Sauté diced onion and garlic until soft and golden.",
+      "Add turmeric, cumin, and chili flakes. Toast spices for 30 seconds until fragrant.",
+      "Add rinsed red lentils, coconut milk, and vegetable broth. Stir to combine.",
+      "Bring to a boil, then reduce heat to low, cover partially, and simmer for 20 minutes until lentils are soft and creamy.",
+      "Fold in fresh spinach until wilted. Season with salt and lemon juice to taste."
+    ],
+    "nutritionPerServing": {
+      "calories": 360,
+      "protein": 17,
+      "carbs": 44,
+      "fat": 14
+    }
+  },
+  {
+    "id": "recipe-6",
+    "name": "Rainbow Veggie & Tofu Stir-Fry",
+    "servings": 3,
+    "prepTime": 15,
+    "cookTime": 15,
+    "tags": ["Vegan", "Dinner", "Quick", "High-Protein"],
+    "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🥢",
+    "description": "Crispy golden tofu cubes and crunchy colorful vegetables tossed in a savory ginger garlic soy glaze.",
+    "ingredients": [
+      { "name": "firm tofu", "quantity": 350, "unit": "g", "aisle": "Produce", "raw": "350g firm tofu, pressed and cubed" },
+      { "name": "broccoli", "quantity": 200, "unit": "g", "aisle": "Produce", "raw": "200g broccoli florets" },
+      { "name": "bell pepper", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1 red bell pepper, sliced" },
+      { "name": "carrots", "quantity": 2, "unit": "piece", "aisle": "Produce", "raw": "2 carrots, julienned" },
+      { "name": "soy sauce", "quantity": 45, "unit": "ml", "aisle": "Condiments & Spices", "raw": "3 tbsp soy sauce" },
+      { "name": "garlic", "quantity": 2, "unit": "cloves", "aisle": "Produce", "raw": "2 cloves garlic, minced" },
+      { "name": "sesame oil", "quantity": 15, "unit": "ml", "aisle": "Condiments & Spices", "raw": "1 tbsp toasted sesame oil" }
+    ],
+    "instructions": [
+      "Pat tofu dry with paper towels.",
+      "Heat sesame oil in a wok or large skillet over high heat. Fry tofu cubes for 6-8 minutes until golden and crisp. Remove.",
+      "In the same wok, toss in broccoli, bell peppers, carrots, and minced garlic. Stir-fry briskly for 4-5 minutes until crisp-tender.",
+      "Return tofu to wok, pour in soy sauce and a splash of water. Toss everything together for 1-2 minutes until glossy and piping hot."
+    ],
+    "nutritionPerServing": {
+      "calories": 280,
+      "protein": 18,
+      "carbs": 19,
+      "fat": 16
+    }
+  },
+  {
+    "id": "recipe-7",
+    "name": "Classic Hearty Beef Chili",
+    "servings": 4,
+    "prepTime": 15,
+    "cookTime": 35,
+    "tags": ["High-Protein", "Dinner", "One-Pot"],
+    "image": "https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🌶️",
+    "description": "Rich and satisfying beef chili loaded with kidney beans, crushed fire-roasted tomatoes, chili powder, and cumin.",
+    "ingredients": [
+      { "name": "ground beef", "quantity": 500, "unit": "g", "aisle": "Meat & Seafood", "raw": "500g lean ground beef" },
+      { "name": "kidney beans", "quantity": 1, "unit": "can", "aisle": "Canned & Jarred", "raw": "1 can (400g) kidney beans, rinsed" },
+      { "name": "crushed tomatoes", "quantity": 1, "unit": "can", "aisle": "Canned & Jarred", "raw": "1 can (400g) crushed tomatoes" },
+      { "name": "yellow onion", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1 medium onion, diced" },
+      { "name": "garlic", "quantity": 3, "unit": "cloves", "aisle": "Produce", "raw": "3 cloves garlic, minced" },
+      { "name": "chili powder", "quantity": 2, "unit": "tbsp", "aisle": "Condiments & Spices", "raw": "2 tbsp chili powder" },
+      { "name": "ground cumin", "quantity": 1, "unit": "tsp", "aisle": "Condiments & Spices", "raw": "1 tsp ground cumin" },
+      { "name": "bell pepper", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1 green bell pepper, chopped" }
+    ],
+    "instructions": [
+      "In a Dutch oven or large pot, brown ground beef over medium heat. Drain excess fat.",
+      "Add diced onion, pepper, and minced garlic. Sauté for 4-5 minutes until vegetables soften.",
+      "Stir in chili powder, ground cumin, and 1 tsp salt, coating the beef thoroughly.",
+      "Pour in crushed tomatoes and rinsed kidney beans. Bring to a low boil, then reduce heat to low.",
+      "Cover and simmer gently for 25 minutes, stirring occasionally, until flavors deepen."
+    ],
+    "nutritionPerServing": {
+      "calories": 440,
+      "protein": 36,
+      "carbs": 29,
+      "fat": 20
+    }
+  },
+  {
+    "id": "recipe-8",
+    "name": "Avocado Toast with Poached Eggs",
+    "servings": 2,
+    "prepTime": 10,
+    "cookTime": 5,
+    "tags": ["Quick", "Breakfast", "Vegetarian", "High-Protein"],
+    "image": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🥑",
+    "description": "Thick crusty sourdough toast smeared with seasoned mashed ripe avocado, topped with runny soft-poached eggs and chili flakes.",
+    "ingredients": [
+      { "name": "sourdough bread", "quantity": 2, "unit": "slices", "aisle": "Bakery", "raw": "2 thick slices sourdough bread" },
+      { "name": "avocado", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1 ripe avocado, pitted" },
+      { "name": "eggs", "quantity": 2, "unit": "piece", "aisle": "Dairy & Eggs", "raw": "2 large eggs" },
+      { "name": "cherry tomatoes", "quantity": 60, "unit": "g", "aisle": "Produce", "raw": "60g cherry tomatoes, halved" },
+      { "name": "lemon", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1 lemon" },
+      { "name": "olive oil", "quantity": 10, "unit": "ml", "aisle": "Pantry & Grains", "raw": "1 tsp extra virgin olive oil" }
+    ],
+    "instructions": [
+      "Toast sourdough slices until golden brown and firm.",
+      "In a small bowl, mash the avocado with lemon juice, sea salt, and black pepper.",
+      "Poach eggs for 3-4 minutes until whites are set and yolks remain soft.",
+      "Spread mashed avocado evenly across the warm toast. Top each with a poached egg and halved cherry tomatoes."
+    ],
+    "nutritionPerServing": {
+      "calories": 320,
+      "protein": 14,
+      "carbs": 26,
+      "fat": 19
+    }
+  },
+  {
+    "id": "recipe-9",
+    "name": "Sheet Pan Lemon Herb Salmon & Asparagus",
+    "servings": 2,
+    "prepTime": 10,
+    "cookTime": 15,
+    "tags": ["High-Protein", "Dinner", "Gluten-Free", "Quick"],
+    "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🐟",
+    "description": "Succulent salmon fillets and tender asparagus spears roasted on a single sheet pan with lemon zest, garlic, and herbs.",
+    "ingredients": [
+      { "name": "salmon fillet", "quantity": 360, "unit": "g", "aisle": "Meat & Seafood", "raw": "2 salmon fillets (approx 360g total)" },
+      { "name": "asparagus", "quantity": 250, "unit": "g", "aisle": "Produce", "raw": "250g asparagus, woody ends trimmed" },
+      { "name": "olive oil", "quantity": 25, "unit": "ml", "aisle": "Pantry & Grains", "raw": "1.5 tbsp olive oil" },
+      { "name": "garlic", "quantity": 2, "unit": "cloves", "aisle": "Produce", "raw": "2 cloves garlic, minced" },
+      { "name": "lemon", "quantity": 1, "unit": "piece", "aisle": "Produce", "raw": "1 fresh lemon, sliced" }
+    ],
+    "instructions": [
+      "Preheat oven to 400°F (200°C) and line a rimmed baking sheet with parchment paper.",
+      "Arrange salmon fillets and trimmed asparagus in a single layer on the sheet.",
+      "Drizzle olive oil over both salmon and asparagus. Season generously with minced garlic, sea salt, and black pepper.",
+      "Top salmon fillets with fresh lemon slices.",
+      "Roast for 12-14 minutes until salmon flakes easily with a fork and asparagus is tender."
+    ],
+    "nutritionPerServing": {
+      "calories": 420,
+      "protein": 39,
+      "carbs": 6,
+      "fat": 27
+    }
+  },
+  {
+    "id": "recipe-10",
+    "name": "Fluffy Golden Banana Oat Pancakes",
+    "servings": 3,
+    "prepTime": 10,
+    "cookTime": 10,
+    "tags": ["Breakfast", "Vegetarian", "Quick"],
+    "image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🥞",
+    "description": "Naturally sweet, wholesome pancakes blended with ripe bananas, rolled oats, eggs, and a touch of cinnamon.",
+    "ingredients": [
+      { "name": "rolled oats", "quantity": 150, "unit": "g", "aisle": "Pantry & Grains", "raw": "150g rolled oats" },
+      { "name": "banana", "quantity": 2, "unit": "piece", "aisle": "Produce", "raw": "2 ripe bananas" },
+      { "name": "eggs", "quantity": 2, "unit": "piece", "aisle": "Dairy & Eggs", "raw": "2 large eggs" },
+      { "name": "milk", "quantity": 120, "unit": "ml", "aisle": "Dairy & Eggs", "raw": "120ml milk" },
+      { "name": "butter", "quantity": 15, "unit": "g", "aisle": "Dairy & Eggs", "raw": "1 tbsp butter for the pan" },
+      { "name": "cinnamon", "quantity": 1, "unit": "tsp", "aisle": "Condiments & Spices", "raw": "1 tsp ground cinnamon" }
+    ],
+    "instructions": [
+      "Add oats, bananas, eggs, milk, cinnamon, and a pinch of salt to a blender. Blend on high until completely smooth.",
+      "Heat a nonstick pan over medium heat with a little butter.",
+      "Pour 1/4 cup batter for each pancake. Cook until little bubbles form on top (about 2-3 minutes).",
+      "Flip gently and cook another 1-2 minutes until golden brown. Serve stacked with maple syrup or berries."
+    ],
+    "nutritionPerServing": {
+      "calories": 310,
+      "protein": 11,
+      "carbs": 49,
+      "fat": 8
+    }
+  },
+  {
+    "id": "recipe-11",
+    "name": "Greek Yogurt Berry Parfait",
+    "servings": 2,
+    "prepTime": 5,
+    "cookTime": 0,
+    "tags": ["Breakfast", "Snack", "Quick", "Vegetarian", "High-Protein"],
+    "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🍨",
+    "description": "Layered thick Greek yogurt with fresh berries, crunchy toasted granola, and raw clover honey.",
+    "ingredients": [
+      { "name": "greek yogurt", "quantity": 300, "unit": "g", "aisle": "Dairy & Eggs", "raw": "300g plain Greek yogurt" },
+      { "name": "blueberries", "quantity": 100, "unit": "g", "aisle": "Produce", "raw": "100g blueberries" },
+      { "name": "strawberries", "quantity": 100, "unit": "g", "aisle": "Produce", "raw": "100g sliced strawberries" },
+      { "name": "honey", "quantity": 30, "unit": "ml", "aisle": "Pantry & Grains", "raw": "2 tbsp honey" },
+      { "name": "rolled oats", "quantity": 50, "unit": "g", "aisle": "Pantry & Grains", "raw": "50g toasted granola or oats" }
+    ],
+    "instructions": [
+      "In two tall glasses, spoon a layer of cold Greek yogurt at the bottom.",
+      "Add a layer of mixed berries and a sprinkle of granola.",
+      "Repeat layers once more.",
+      "Drizzle golden honey on top right before serving."
+    ],
+    "nutritionPerServing": {
+      "calories": 260,
+      "protein": 18,
+      "carbs": 38,
+      "fat": 5
+    }
+  },
+  {
+    "id": "recipe-12",
+    "name": "Caprese Tomato Basil Panini",
+    "servings": 2,
+    "prepTime": 5,
+    "cookTime": 8,
+    "tags": ["Lunch", "Vegetarian", "Quick"],
+    "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80",
+    "emoji": "🥪",
+    "description": "Crisp toasted ciabatta stuffed with fresh mozzarella, ripe Roma tomatoes, fragrant fresh basil, and balsamic glaze.",
+    "ingredients": [
+      { "name": "ciabatta bread", "quantity": 2, "unit": "slices", "aisle": "Bakery", "raw": "2 ciabatta rolls or thick bread" },
+      { "name": "mozzarella", "quantity": 150, "unit": "g", "aisle": "Dairy & Eggs", "raw": "150g sliced fresh mozzarella" },
+      { "name": "tomatoes", "quantity": 2, "unit": "piece", "aisle": "Produce", "raw": "2 ripe tomatoes, sliced" },
+      { "name": "fresh basil", "quantity": 1, "unit": "bunch", "aisle": "Produce", "raw": "1 bunch fresh basil leaves" },
+      { "name": "olive oil", "quantity": 15, "unit": "ml", "aisle": "Pantry & Grains", "raw": "1 tbsp olive oil" }
+    ],
+    "instructions": [
+      "Slice ciabatta open and brush exterior lightly with olive oil.",
+      "Layer inside with fresh mozzarella slices, tomato slices, and fresh basil leaves.",
+      "Season with sea salt and cracked black pepper.",
+      "Press in a hot panini press or skillet for 3-4 minutes per side until bread is crunchy and cheese is meltingly gooey."
+    ],
+    "nutritionPerServing": {
+      "calories": 390,
+      "protein": 19,
+      "carbs": 36,
+      "fat": 19
+    }
+  }
+];

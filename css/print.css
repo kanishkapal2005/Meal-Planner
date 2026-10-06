@@ -1,0 +1,185 @@
+/* ==========================================================================
+   print.css - Printable Layout for Weekly Plan & Grocery List
+   ========================================================================== */
+
+@media print {
+  /* Hide non-printable UI elements */
+  .app-header,
+  .main-nav,
+  .page-toolbar,
+  .header-actions,
+  .recipes-filter-bar,
+  .pantry-add-box,
+  .use-it-up-sidebar,
+  .recipe-actions,
+  .meal-card-controls,
+  .btn-remove-meal,
+  .empty-slot-placeholder,
+  .toast-container,
+  .modal-wrapper,
+  .custom-item-box,
+  .btn,
+  .chip-filter,
+  .recipes-pagination {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10pt;
+    line-height: 1.3;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .main-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Show both Plan and Shopping tabs when printing */
+  .tab-pane {
+    display: block !important;
+    page-break-after: always;
+  }
+
+  /* Hide raw recipe library and pantry tabs from print unless focused */
+  #tab-recipes,
+  #tab-pantry,
+  #tab-nutrition {
+    display: none !important;
+  }
+
+  /* Printable Header */
+  .print-header {
+    display: block !important;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .print-header h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .print-header p {
+    font-size: 9pt;
+    color: #444444;
+  }
+
+  /* Weekly Planner Grid Print Styling */
+  .planner-table-wrapper {
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+    border-radius: 0 !important;
+    margin-bottom: 1.5rem;
+  }
+
+  .weekly-grid-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-collapse: collapse !important;
+  }
+
+  .weekly-grid-table caption {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    border-bottom: 2px solid #000000 !important;
+  }
+
+  .weekly-grid-table th,
+  .weekly-grid-table td {
+    border: 1px solid #000000 !important;
+    padding: 6px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .weekly-grid-table th {
+    background-color: #f0f0f0 !important;
+    font-weight: bold !important;
+  }
+
+  .scheduled-meal-card {
+    border: 1px solid #666666 !important;
+    border-left: 3px solid #000000 !important;
+    padding: 4px !important;
+    margin-bottom: 4px !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+  }
+
+  .meal-title-wrap {
+    font-weight: bold;
+    font-size: 9pt;
+  }
+
+  .meal-leftover-chip {
+    border: 1px solid #888888 !important;
+    background: #eeeeee !important;
+    color: #000000 !important;
+  }
+
+  /* Printable Shopping List */
+  .shopping-layout-columns {
+    display: block !important;
+  }
+
+  .shopping-aisle-group {
+    border: 1px solid #333333 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin-bottom: 1rem !important;
+    break-inside: avoid;
+  }
+
+  .aisle-header {
+    background: #eeeeee !important;
+    color: #000000 !important;
+    border-bottom: 1px solid #333333 !important;
+    font-weight: bold !important;
+    font-size: 11pt !important;
+  }
+
+  .shopping-item-row {
+    border-bottom: 1px solid #cccccc !important;
+    padding: 4px 8px !important;
+  }
+
+  .checkbox-custom {
+    border: 1.5px solid #000000 !important;
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 2px !important;
+    background: #ffffff !important;
+  }
+
+  .item-name {
+    font-size: 9pt !important;
+    color: #000000 !important;
+  }
+
+  .item-quantity {
+    font-size: 9pt !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+  }
+
+  .pantry-offset-pill {
+    border: 1px solid #999999 !important;
+    background: #f9f9f9 !important;
+    color: #333333 !important;
+    font-size: 7.5pt !important;
+  }
+
+  .shopping-reasons-wrap,
+  .shopping-reason-tag {
+    font-size: 7pt !important;
+    color: #555555 !important;
+  }
+}

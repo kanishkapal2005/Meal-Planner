@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pantry Meal Planner & Grocery Consolidator</title>
+  <meta name="description" content="Weekly meal planner that merges recipe ingredients into one smart shopping list, subtracts pantry inventory, and prioritizes soon-to-expire food." />
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/print.css" media="print" />
+</head>
+<body>
+
+  <!-- Top Application Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <span class="brand-icon">🥑</span>
+        <div>
+          <h1 class="brand-title">Pantry Meal Planner</h1>
+          <p class="brand-subtitle">Smart Meal Scheduling & Grocery Consolidator</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Household / Multi-Pantry Mode -->
+        <div class="household-box" title="Switch active pantry / household">
+          <label for="household-select">🏠</label>
+          <select id="household-select" class="household-select" aria-label="Select Household Pantry">
+            <option value="home">🏠 Main Household</option>
+          </select>
+          <button class="btn-icon-subtle" id="btn-manage-households" title="Manage households and pantries">⚙️</button>
+        </div>
+
+        <button class="btn btn-sm btn-outline" id="btn-print-plan" title="Print weekly schedule and grocery list">
+          🖨️ Print
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navigation Tabs -->
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="nav-container" role="tablist">
+      <button class="nav-tab active" role="tab" id="tab-btn-plan" aria-selected="true" data-tab="plan">
+        <span class="nav-tab-icon">🗓️</span>
+        <span>Weekly Plan</span>
+      </button>
+      <button class="nav-tab" role="tab" id="tab-btn-recipes" aria-selected="false" data-tab="recipes">
+        <span class="nav-tab-icon">📖</span>
+        <span>Recipe Library</span>
+      </button>
+      <button class="nav-tab" role="tab" id="tab-btn-pantry" aria-selected="false" data-tab="pantry">
+        <span class="nav-tab-icon">🥫</span>
+        <span>Pantry & Expiry</span>
+      </button>
+      <button class="nav-tab" role="tab" id="tab-btn-shopping" aria-selected="false" data-tab="shopping">
+        <span class="nav-tab-icon">🛒</span>
+        <span>Grocery List</span>
+      </button>
+      <button class="nav-tab" role="tab" id="tab-btn-nutrition" aria-selected="false" data-tab="nutrition">
+        <span class="nav-tab-icon">📊</span>
+        <span>Nutrition</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Areas -->
+  <main class="main-content">
+
+    <!-- Print Only Header -->
+    <div class="print-header" style="display: none;">
+      <h1>Pantry Meal Planner & Consolidated Grocery List</h1>
+      <p>Print Date: <span id="print-date">Generated for the week</span> | Zero Food Waste Planner</p>
+    </div>
+
+    <!-- =========================================================================
+         TAB 1: WEEKLY PLANNER
+         ========================================================================= -->
+    <section id="tab-plan" class="tab-pane active" role="tabpanel" aria-labelledby="tab-btn-plan">
+      <div class="page-toolbar">
+        <div class="page-title-wrap">
+          <h2>Weekly Meal Plan</h2>
+          <p>Drag recipes onto meal slots, scale servings, and link leftovers effortlessly.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn btn-outline" id="btn-autoplan" title="Populate meals that utilize soon-to-expire ingredients">
+            ✨ Auto-Plan with Expiring Pantry
+          </button>
+          <button class="btn btn-outline btn-danger" id="btn-clear-week" title="Clear all meals from schedule">
+            🗑️ Clear Week
+          </button>
+        </div>
+      </div>
+
+      <!-- Weekly Schedule Table -->
+      <div class="planner-table-wrapper">
+        <table class="weekly-grid-table" id="weekly-planner-table">
+          <caption>Weekly Meal Schedule (Monday to Sunday)</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="planner-slot-header">Meal Slot</th>
+              <th scope="col">Monday</th>
+              <th scope="col">Tuesday</th>
+              <th scope="col">Wednesday</th>
+              <th scope="col">Thursday</th>
+              <th scope="col">Friday</th>
+              <th scope="col">Saturday</th>
+              <th scope="col">Sunday</th>
+            </tr>
+          </thead>
+          <tbody id="planner-table-body">
+            <!-- Dynamic rows for Breakfast, Lunch, Dinner, Snack injected via planner.js -->
+          </tbody>
+          <tfoot id="planner-nutrition-foot">
+            <!-- Estimated Daily Nutrition Foot Row -->
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 2: RECIPE LIBRARY
+         ========================================================================= -->
+    <section id="tab-recipes" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-recipes">
+      <div class="page-toolbar">
+        <div class="page-title-wrap">
+          <h2>Recipe Library</h2>
+          <p>Explore recipes, scale ingredient servings, or create and import new recipes.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn btn-outline" id="btn-import-recipe">
+            📥 Import Recipe
+          </button>
+          <button class="btn btn-outline" id="btn-export-recipes">
+            💾 Export JSON
+          </button>
+          <button class="btn btn-primary" id="btn-add-recipe">
+            + New Recipe
+          </button>
+        </div>
+      </div>
+
+      <!-- Search & Tag Filtering -->
+      <div class="recipes-filter-bar">
+        <div class="filter-search-row">
+          <input type="search" id="recipes-search" class="form-control" placeholder="🔍 Search recipes, ingredients (e.g. spinach, chicken, oats)..." style="flex: 2;" />
+          <select id="recipe-sort-select" class="form-control" style="flex: 1; max-width: 220px;" aria-label="Sort Recipes">
+            <option value="name">Sort by Name (A-Z)</option>
+            <option value="quickest">Sort by Quickest Time</option>
+            <option value="protein">Sort by Highest Protein</option>
+          </select>
+        </div>
+        <div class="filter-tags-scroll" id="recipe-tag-filters">
+          <!-- Filter tag chips injected via main.js -->
+        </div>
+      </div>
+
+      <!-- Recipes Grid -->
+      <div class="recipes-grid" id="recipes-grid">
+        <!-- Recipe cards rendered here -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="recipes-pagination" id="recipes-pagination" style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 2rem;">
+        <!-- Pagination controls -->
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 3: PANTRY INVENTORY & 'USE IT UP'
+         ========================================================================= -->
+    <section id="tab-pantry" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-pantry">
+      <div class="page-toolbar">
+        <div class="page-title-wrap">
+          <h2>Pantry Inventory & Freshness</h2>
+          <p>Track quantities and expiry dates. The shopping list subtracts items you already have.</p>
+        </div>
+      </div>
+
+      <div class="pantry-layout-columns">
+        <div class="pantry-main-column">
+          <!-- Add Item Form -->
+          <div class="pantry-add-box">
+            <h3>Add Item to Pantry</h3>
+            <form id="pantry-add-form">
+              <div class="form-row-3">
+                <div class="form-group" style="grid-column: span 1.5;">
+                  <label for="pantry-name">Item Name *</label>
+                  <input type="text" list="pantry-suggestions" id="pantry-name" name="pantry-name" class="form-control" placeholder="e.g. baby spinach, milk, rice" required />
+                </div>
+                <div class="form-group">
+                  <label for="pantry-quantity">Quantity *</label>
+                  <input type="number" step="any" min="0" id="pantry-quantity" name="pantry-quantity" class="form-control" value="1" required />
+                </div>
+                <div class="form-group">
+                  <label for="pantry-unit">Unit *</label>
+                  <select id="pantry-unit" name="pantry-unit" class="form-control">
+                    <option value="piece">piece</option>
+                    <option value="g">grams (g)</option>
+                    <option value="kg">kg</option>
+                    <option value="ml">ml</option>
+                    <option value="l">liters (L)</option>
+                    <option value="cup">cup</option>
+                    <option value="tbsp">tbsp</option>
+                    <option value="tsp">tsp</option>
+                    <option value="can">can</option>
+                    <option value="bunch">bunch</option>
+                    <option value="slices">slices</option>
+                    <option value="cloves">cloves</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="pantry-aisle">Category / Aisle</label>
+                  <select id="pantry-aisle" name="pantry-aisle" class="form-control">
+                    <option value="Produce">Produce</option>
+                    <option value="Dairy & Eggs">Dairy & Eggs</option>
+                    <option value="Meat & Seafood">Meat & Seafood</option>
+                    <option value="Bakery">Bakery</option>
+                    <option value="Pantry & Grains">Pantry & Grains</option>
+                    <option value="Canned & Jarred">Canned & Jarred</option>
+                    <option value="Condiments & Spices">Condiments & Spices</option>
+                    <option value="Frozen">Frozen</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="pantry-expiry">Expiry Date (optional)</label>
+                  <input type="date" id="pantry-expiry" name="pantry-expiry" class="form-control" />
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">+ Add to Pantry</button>
+            </form>
+          </div>
+
+          <!-- Pantry Search & Filter Bar -->
+          <div class="filter-search-row" style="margin-bottom: 1rem;">
+            <input type="search" id="pantry-search" class="form-control" placeholder="🔍 Search pantry..." style="flex: 2;" />
+            <select id="pantry-status-filter" class="form-control" style="flex: 1;" aria-label="Filter by Freshness">
+              <option value="all">All Freshness Statuses</option>
+              <option value="soon">⏳ Expiring Soon (≤ 4 days)</option>
+              <option value="fresh">🌿 Fresh (> 4 days)</option>
+              <option value="expired">⚠️ Expired</option>
+              <option value="staple">🏷️ Staples / Long-life</option>
+            </select>
+          </div>
+
+          <!-- Pantry Items Grid -->
+          <div class="pantry-cards-grid" id="pantry-list-container">
+            <!-- Rendered via pantry.js & main.js -->
+          </div>
+        </div>
+
+        <!-- 'Use It Up' Suggestions Sidebar -->
+        <aside class="use-it-up-sidebar">
+          <div class="use-it-up-header-box">
+            <h3>⚡ 'Use It Up' Engine</h3>
+            <p>Recipes matched to utilize your soon-to-expire ingredients and prevent food waste.</p>
+          </div>
+          <div id="use-it-up-container">
+            <!-- Use It Up cards injected via main.js -->
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 4: CONSOLIDATED SHOPPING LIST
+         ========================================================================= -->
+    <section id="tab-shopping" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-shopping">
+      <div class="page-toolbar">
+        <div class="page-title-wrap">
+          <h2>Consolidated Grocery List</h2>
+          <p id="shopping-stats-badge">Smartly merged ingredients with pantry stock subtracted.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn btn-outline" id="btn-copy-list" title="Copy clean formatted checklist to clipboard">
+            📋 Copy Plain Text
+          </button>
+          <button class="btn btn-outline" id="btn-share-list" title="Share via WhatsApp, SMS, or AirDrop">
+            📤 Share List
+          </button>
+          <button class="btn btn-outline" id="btn-check-all">
+            ☑️ Check All
+          </button>
+          <button class="btn btn-outline btn-danger" id="btn-clear-checked">
+            ✕ Clear Checked
+          </button>
+        </div>
+      </div>
+
+      <div class="shopping-layout-columns">
+        <div class="shopping-main-column">
+          <!-- Shopping Items Grouped by Aisle -->
+          <div id="shopping-list-container">
+            <!-- Injected via shopping.js & main.js -->
+          </div>
+        </div>
+
+        <!-- Add Custom Ad-Hoc Items Sidebar -->
+        <aside class="custom-item-sidebar">
+          <div class="pantry-add-box custom-item-box">
+            <h3>+ Add Extra Item</h3>
+            <p class="text-muted" style="font-size: 0.8rem; margin-bottom: 0.75rem;">Need dish soap, coffee beans, or paper towels?</p>
+            <form id="custom-item-form">
+              <div class="form-group">
+                <label for="custom-name">Item Name *</label>
+                <input type="text" id="custom-name" name="custom-name" list="pantry-suggestions" class="form-control" placeholder="e.g. coffee beans, napkins" required />
+              </div>
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="custom-quantity">Qty</label>
+                  <input type="number" step="any" min="0" id="custom-quantity" name="custom-quantity" class="form-control" value="1" required />
+                </div>
+                <div class="form-group">
+                  <label for="custom-unit">Unit</label>
+                  <select id="custom-unit" name="custom-unit" class="form-control">
+                    <option value="pack">pack</option>
+                    <option value="piece">item/piece</option>
+                    <option value="bottle">bottle</option>
+                    <option value="can">can</option>
+                    <option value="bag">bag</option>
+                    <option value="g">g</option>
+                    <option value="ml">ml</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="custom-aisle">Aisle</label>
+                <select id="custom-aisle" name="custom-aisle" class="form-control">
+                  <option value="Other">Other / Household</option>
+                  <option value="Produce">Produce</option>
+                  <option value="Dairy & Eggs">Dairy & Eggs</option>
+                  <option value="Bakery">Bakery</option>
+                  <option value="Snacks & Beverages">Snacks & Beverages</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">+ Add to Grocery List</button>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 5: NUTRITION SUMMARY
+         ========================================================================= -->
+    <section id="tab-nutrition" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-nutrition">
+      <div class="page-toolbar">
+        <div class="page-title-wrap">
+          <h2>Nutrition Breakdown</h2>
+          <p>Estimated macro and caloric intake calculated across your scheduled weekly meals.</p>
+        </div>
+      </div>
+      <div id="nutrition-dashboard-container">
+        <!-- Rendered via main.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       MODALS
+       ========================================================================= -->
+
+  <!-- Modal 1: Recipe Details & Serving Scaler -->
+  <div class="modal-wrapper" id="modal-recipe-view" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card modal-card-lg">
+      <button class="modal-close" aria-label="Close dialog">✕</button>
+      <div class="modal-body-content">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Recipe Editor (Create / Edit with Dynamic Ingredient Rows) -->
+  <div class="modal-wrapper" id="modal-recipe-edit" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card modal-card-lg">
+      <button class="modal-close" aria-label="Close dialog">✕</button>
+      <div class="modal-body-content">
+        <!-- Form injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Import Recipe (Free-Text Line Parser / JSON) -->
+  <div class="modal-wrapper" id="modal-import" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Close dialog">✕</button>
+      <div class="modal-body-content">
+        <!-- Import form injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Assign Recipe / Quick Slot Picker (Touch & Accessible) -->
+  <div class="modal-wrapper" id="modal-assign-slot" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Close dialog">✕</button>
+      <div class="modal-body-content">
+        <!-- Slot assignment injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Household / Multiple Pantries Manager -->
+  <div class="modal-wrapper" id="modal-households" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Close dialog">✕</button>
+      <div class="modal-body-content">
+        <!-- Household list injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container with Undo Support -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Datalist Autocomplete Sources -->
+  <datalist id="pantry-suggestions">
+    <option value="baby spinach"></option>
+    <option value="milk"></option>
+    <option value="heavy cream"></option>
+    <option value="butter"></option>
+    <option value="parmesan cheese"></option>
+    <option value="cheddar cheese"></option>
+    <option value="mozzarella"></option>
+    <option value="feta cheese"></option>
+    <option value="greek yogurt"></option>
+    <option value="eggs"></option>
+    <option value="chicken breast"></option>
+    <option value="ground beef"></option>
+    <option value="salmon fillet"></option>
+    <option value="bacon"></option>
+    <option value="firm tofu"></option>
+    <option value="garlic"></option>
+    <option value="yellow onion"></option>
+    <option value="red onion"></option>
+    <option value="bell pepper"></option>
+    <option value="tomatoes"></option>
+    <option value="cherry tomatoes"></option>
+    <option value="cucumber"></option>
+    <option value="carrots"></option>
+    <option value="broccoli"></option>
+    <option value="mushrooms"></option>
+    <option value="avocado"></option>
+    <option value="asparagus"></option>
+    <option value="lemon"></option>
+    <option value="fresh basil"></option>
+    <option value="olive oil"></option>
+    <option value="sesame oil"></option>
+    <option value="soy sauce"></option>
+    <option value="rolled oats"></option>
+    <option value="penne pasta"></option>
+    <option value="spaghetti"></option>
+    <option value="basmati rice"></option>
+    <option value="all-purpose flour"></option>
+    <option value="honey"></option>
+    <option value="chia seeds"></option>
+    <option value="red lentils"></option>
+    <option value="chickpeas"></option>
+    <option value="kidney beans"></option>
+    <option value="crushed tomatoes"></option>
+    <option value="coconut milk"></option>
+    <option value="sun-dried tomatoes"></option>
+    <option value="sourdough bread"></option>
+    <option value="ciabatta bread"></option>
+    <option value="black pepper"></option>
+    <option value="sea salt"></option>
+    <option value="ground turmeric"></option>
+    <option value="ground cumin"></option>
+    <option value="chili powder"></option>
+    <option value="cinnamon"></option>
+  </datalist>
+
+  <!-- JavaScript Modules -->
+  <script src="data/recipes-data.js"></script>
+  <script src="js/units.js"></script>
+  <script src="js/parse-ingredient.js"></script>
+  <script src="js/pantry.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/shopping.js"></script>
+  <script src="js/dnd.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

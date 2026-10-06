@@ -1,0 +1,111 @@
+{
+  "volume": {
+    "base": "ml",
+    "conversions": {
+      "ml": 1,
+      "milliliter": 1,
+      "milliliters": 1,
+      "l": 1000,
+      "liter": 1000,
+      "liters": 1000,
+      "tsp": 5,
+      "teaspoon": 5,
+      "teaspoons": 5,
+      "tbsp": 15,
+      "tablespoon": 15,
+      "tablespoons": 15,
+      "fl oz": 29.57,
+      "fluid ounce": 29.57,
+      "fluid ounces": 29.57,
+      "cup": 240,
+      "cups": 240,
+      "pint": 473.18,
+      "pints": 473.18,
+      "pt": 473.18,
+      "quart": 946.35,
+      "quarts": 946.35,
+      "qt": 946.35,
+      "gallon": 3785.41,
+      "gallons": 3785.41,
+      "gal": 3785.41
+    },
+    "displayUnits": [
+      { "unit": "tsp", "min": 0, "max": 14.9 },
+      { "unit": "tbsp", "min": 15, "max": 59.9 },
+      { "unit": "cup", "min": 60, "max": 999.9 },
+      { "unit": "l", "min": 1000, "max": Infinity }
+    ]
+  },
+  "mass": {
+    "base": "g",
+    "conversions": {
+      "g": 1,
+      "gram": 1,
+      "grams": 1,
+      "kg": 1000,
+      "kilogram": 1000,
+      "kilograms": 1000,
+      "oz": 28.35,
+      "ounce": 28.35,
+      "ounces": 28.35,
+      "lb": 453.59,
+      "lbs": 453.59,
+      "pound": 453.59,
+      "pounds": 453.59
+    },
+    "displayUnits": [
+      { "unit": "g", "min": 0, "max": 999.9 },
+      { "unit": "kg", "min": 1000, "max": Infinity }
+    ]
+  },
+  "count": {
+    "base": "count",
+    "units": [
+      "clove", "cloves",
+      "piece", "pieces",
+      "slice", "slices",
+      "can", "cans",
+      "bunch", "bunches",
+      "pinch", "pinches",
+      "dash", "dashes",
+      "stalk", "stalks",
+      "head", "heads",
+      "leaf", "leaves",
+      "egg", "eggs",
+      "package", "packages",
+      "pack", "packs",
+      "bag", "bags",
+      "bottle", "bottles",
+      "jar", "jars",
+      "count", "item", "items"
+    ]
+  },
+  "aisles": [
+    "Produce",
+    "Dairy & Eggs",
+    "Meat & Seafood",
+    "Bakery",
+    "Pantry & Grains",
+    "Canned & Jarred",
+    "Condiments & Spices",
+    "Frozen",
+    "Snacks & Beverages",
+    "Other"
+  ],
+  "densities": {
+    "water": 1.0,
+    "milk": 1.03,
+    "olive oil": 0.92,
+    "vegetable oil": 0.92,
+    "all-purpose flour": 0.53,
+    "flour": 0.53,
+    "granulated sugar": 0.85,
+    "sugar": 0.85,
+    "brown sugar": 0.82,
+    "honey": 1.42,
+    "butter": 0.96,
+    "rice": 0.85,
+    "oats": 0.40,
+    "soy sauce": 1.15
+  }
+}
